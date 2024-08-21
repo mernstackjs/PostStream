@@ -55,7 +55,7 @@ export const Login = async (req, res) => {
   }
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password");
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -89,6 +89,7 @@ export const Login = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "An error occurred during login.",
+      Error: error,
     });
   }
 };
