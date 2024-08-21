@@ -22,7 +22,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-userSchema.methods.comparePassword = async function (password) {
+userSchema.methods.comparePasswords = async function (password) {
   try {
     return await bcrypt.compare(password, this.password);
   } catch (error) {
