@@ -3,8 +3,8 @@ dotenv.config({ path: "./config/.env" });
 import express from "express";
 import cookieParser from "cookie-parser";
 import { connectDb } from "./__db.js";
+import router from "../src/router/index.js";
 const app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -16,6 +16,10 @@ app.use(cookieParser());
 app.get("/v1/test", (req, res) => {
   res.send("test route is working well");
 });
+
+// router
+
+app.use("/v1/api", router);
 
 export function start() {
   const PORT = process.env.PORT;
