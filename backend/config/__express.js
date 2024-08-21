@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
-
 dotenv.config({ path: "./config/.env" });
 import express from "express";
 import cookieParser from "cookie-parser";
+import { connectDb } from "./__db.js";
 const app = express();
 
 app.use(express.json());
@@ -21,5 +21,6 @@ export function start() {
   const PORT = process.env.PORT;
   app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`);
+    connectDb();
   });
 }
